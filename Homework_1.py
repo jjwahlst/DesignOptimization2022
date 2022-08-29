@@ -9,7 +9,7 @@ from scipy.optimize import minimize
 
 # Problem 1
 
-def fun(x)
+def fun(x):
     x1=x[0]
     x2=x[1]
     x3=x[2]
@@ -17,11 +17,11 @@ def fun(x)
     x5=x[4]
     return (x1-x2)**2 +(x2+x3-2)**2 +(x4-1)**2 +(x5-1)**2
 
-def ST1(x)
+def ST1(x):
     return x1+3*x2
-def ST2(x)
+def ST2(x):
     return x3+x4-2*x5
-def ST3(x)
+def ST3(x):
     return x2-x5
 
 
