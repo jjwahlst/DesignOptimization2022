@@ -27,4 +27,9 @@ def ST3(x):
 
 x0 =np.zeros(5)
 
-print(fun(x0))
+b= (-10,10)
+bounds=(b,b,b,b,b)
+
+sol = minimize(fun, x0, method='SLSQP', bounds=bounds)
+
+print(sol)
