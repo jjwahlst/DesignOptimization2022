@@ -32,4 +32,4 @@ bounds=(b,b,b,b,b)
 
 sol = minimize(fun, x0, method='SLSQP', bounds=bounds)
 
-print(sol)
+print(sol.x)
