@@ -83,3 +83,5 @@ def fun(x1, x2):
 search_space = {'x1': (-3, 3), 'x2': (-2, 2)}
 optimizer = BayesianOptimization(f=fun, pbounds=search_space, random_state=1234, verbose=1)
 optimizer.maximize(init_points=100, n_iter=15)
+
+# All done
