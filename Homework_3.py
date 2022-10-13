@@ -13,7 +13,9 @@ import warnings
 
 
 X1 = np.array([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0])
-X2 = np.flip(x1, axis=1).copy()
+print(X1)
+X2 = np.flip(X1).copy()
+print(X2)
 
 a = np.array([[8.07131, 1730.63, 233.426], [7.43155, 1554.679, 240.337]])
 T = 20
@@ -26,6 +28,7 @@ P = torch.tensor(P, requires_grad=False, dtype=torch.float32)
 A = Variable(torch.tensor([1.0, 1.0]), requires_grad=True)
 
 x1 = torch.tensor(X1, requires_grad=False, dtype=torch.float32)
+print(x1)
 x2 = torch.tensor(X2, requires_grad=False, dtype=torch.float32)
 
 a = 0.0001
