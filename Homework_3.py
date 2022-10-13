@@ -38,8 +38,8 @@ x2 = torch.tensor(X2, requires_grad=False, dtype=torch.float32)
 
 a = 0.0001
 
-for i in range(1000):
-    P_pred = x1 * torch.exp(A[0] * ((A[1] * x2) / (A[0] * x1 + A[1] * x2)) ** 2) * p1sat + x2 * torch.exp(A[0] * ((A[1] * x1) / (A[0] * x1 + A[1] * x2)) ** 2) * p2sat
+for i in range(100):
+    P_pred = x1 * torch.exp(A[0] * ((A[1] * x2) / (A[0] * x1 + A[1] * x2)) ** 2) * p1sat + x2 * torch.exp(A[1] * ((A[0] * x1) / (A[0] * x1 + A[1] * x2)) ** 2) * p2sat
     loss = (P_pred - P) ** 2
     loss = loss.sum()
     loss.backward()
