@@ -50,6 +50,20 @@ for i in range(100):
 print('Esimation A12, A21 is:', A)
 print('FInal loss is:', loss.data.numpy())
 
+import matplotlib.pyplot as plt
+P_pred = P_pred.detach()
+P = P.detach()
+x1 = x1.detach()
+
+plt.plot(x1, P_pred, label='Predicted Pressure')
+plt.plot(x1, P, label='Actual Pressure')
+plt.xlabel('x1')
+plt.ylabel('Pressure')
+plt.legend()
+plt.title('Comparison between predicted pressure and actual pressure')
+plt.show()
+
+
 
 # CHECK
 # print('P1sat', p1sat, 'P2sat', p2sat)
