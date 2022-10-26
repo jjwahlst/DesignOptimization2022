@@ -71,34 +71,6 @@ class Dynamics(nn.Module):
         state = t.matmul(step_mat, state)
 
         return state
-
-
-# Demonstrate the inplace operation issue
-
-class Dynamics(nn.Module):
-
-    def __init__(self):
-        super(Dynamics, self).__init__()
-
-    @staticmethod
-    def forward(state, action):
-        """
-        action: thrust or no thrust
-        state[0] = y
-        state[1] = y_dot
-        """
-
-        # Update velocity using element-wise operation. This leads to an error from PyTorch.
-        state[1] = state[1] + GRAVITY_ACCEL * FRAME_TIME - BOOST_ACCEL * FRAME_TIME * action
-
-        # Update state
-        step_mat = t.tensor([[1., FRAME_TIME],
-                             [0., 1.]])
-        state = t.matmul(step_mat, state)
-
-        return state
-
-
 # a deterministic controller
 # Note:
 # 0. You only need to change the network architecture in "__init__"
@@ -156,7 +128,7 @@ class Simulation(nn.Module):
 
     @staticmethod
     def initialize_state():
-        state = [1., 0.]  # TODO: need batch of initial states
+        state = [1., 0]  # TODO: need batch of initial states
         return t.tensor(state, requires_grad=False).float()
 
     def error(self, state):
@@ -211,6 +183,6 @@ d = Dynamics()  # define dynamics
 c = Controller(dim_input, dim_hidden, dim_output)  # define controller
 s = Simulation(c, d, T)  # define simulation
 o = Optimize(s)  # define optimizer
-o.train(1)  # solve the optimization problem
+o.train(40)  # solve the optimization problem
 
 
