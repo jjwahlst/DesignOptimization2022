@@ -58,7 +58,7 @@ class Dynamics(nn.Module):
         delta_state_gravity = t.tensor([0., GRAVITY_ACCEL * FRAME_TIME])
 
         # Drag
-        delta_state_drag = DRAG_VALUE * state ** 2
+        delta_state_drag = FRAME_TIME * DRAG_VALUE * (state ** 2)
 
 
         # Thrust
