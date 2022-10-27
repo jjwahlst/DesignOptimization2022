@@ -5,6 +5,10 @@
 # Optimize manufacturing capabilities
 # Optimize
 
+# The objective function is to minimize x(t) which is a vector of distance to the ground and velocity.
+# We want these values to equal 0 together, ie the rocket to not be moving on the ground--landed.
+# We also want to minimize the
+
 # overhead
 
 import logging
