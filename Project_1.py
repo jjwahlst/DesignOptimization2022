@@ -24,7 +24,7 @@ logger = logging.getLogger(__name__)
 FRAME_TIME = 0.1  # time interval
 GRAVITY_ACCEL = 0.12  # gravity constant
 BOOST_ACCEL = 0.18  # thrust constant
-
+DRAG_VALUE = 0.75*1.225*(3.14159/8)*0.1
 
 # # the following parameters are not being used in the sample code
 # PLATFORM_WIDTH = 0.25  # landing platform width
@@ -57,12 +57,17 @@ class Dynamics(nn.Module):
         # Therefore, I define a tensor dx = [0., gravity * delta_time], and do x = x + dx. This is allowed...
         delta_state_gravity = t.tensor([0., GRAVITY_ACCEL * FRAME_TIME])
 
+        # Drag
+        delta_state_drag = DRAG_VALUE * state ** 2
+
+
         # Thrust
         # Note: Same reason as above. Need a 2-by-1 tensor.
         delta_state = BOOST_ACCEL * FRAME_TIME * t.tensor([0., -1.]) * action
 
+
         # Update velocity
-        state = state + delta_state + delta_state_gravity
+        state = state + delta_state + delta_state_gravity - delta_state_drag
 
         # Update state
         # Note: Same as above. Use operators on matrices/tensors as much as possible. Do not use element-wise operators as they are considered inplace.
