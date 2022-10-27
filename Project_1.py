@@ -5,9 +5,9 @@
 # Optimize manufacturing capabilities
 # Optimize
 
-# The objective function is to minimize x(t) which is a vector of distance to the ground and velocity.
+# The objective function is to minimize norm(x(t)) which is a vector of distance to the ground and velocity.
 # We want these values to equal 0 together, ie the rocket to not be moving on the ground--landed.
-# We also want to minimize the
+# We also want to do this over a range of initial starting points to get a good controller.
 
 # overhead
 
@@ -137,7 +137,7 @@ class Simulation(nn.Module):
 
     @staticmethod
     def initialize_state():
-        state = [1., 0]  # TODO: need batch of initial states
+        state = [2., 0.05]  # TODO: need batch of initial states
         return t.tensor(state, requires_grad=False).float()
 
     def error(self, state):
