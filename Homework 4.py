@@ -28,8 +28,3 @@ def ST3(x):
     return -x1 <= 0
 def ST4(x):
     return -x2 <= 0
-
-
-
-
-
